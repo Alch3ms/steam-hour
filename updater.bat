@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "URL=https://github.com/evairx/hours-booster/releases/download/v0.3.5/Hours.Booster.Setup.0.3.5.exe"
+set "URL=https://github.com/evairx/hours-booster/releases/download/v0.3.5/HoursBooster-0.3.5-Setup-x64.exe"
 set "ROUTE=C:\Users\%USERNAME%\AppData\Local\Programs\hours-booster"
 
 if not exist "%ROUTE%" (
