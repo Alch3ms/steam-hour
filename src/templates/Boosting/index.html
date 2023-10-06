@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours Booster | Running</title>
+    <link rel="stylesheet" type="text/css" href="../../styles/boosting.css" />
+</head>
+<body class="bg-wrapper">
+    <div class="blob"></div>
+    <div class="content">
+        <div id="contador" class="count">00d 00h 00m 00s</div>
+    </div>
+
+    <script>
+        function actualizarContador() {
+            var fechaInicio = new Date(); 
+            setInterval(function() {
+                var fechaActual = new Date();
+                var tiempoTranscurrido = fechaActual - fechaInicio; 
+
+                var segundos = Math.floor(tiempoTranscurrido / 1000) % 60;
+                var minutos = Math.floor(tiempoTranscurrido / 1000 / 60) % 60;
+                var horas = Math.floor(tiempoTranscurrido / 1000 / 60 / 60) % 24;
+                var dias = Math.floor(tiempoTranscurrido / 1000 / 60 / 60 / 24);
+
+
+                var contadorTexto = 
+                    (dias < 10 ? "0" : "") + dias + "d " +
+                    (horas < 10 ? "0" : "") + horas + "h " +
+                    (minutos < 10 ? "0" : "") + minutos + "m " +
+                    (segundos < 10 ? "0" : "") + segundos + "s";
+
+                document.getElementById("contador").innerHTML = contadorTexto;
+            }, 1000);
+        }
+
+        actualizarContador(); 
+    </script>
+</body>
+</html>

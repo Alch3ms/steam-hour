@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+  font-family: 'Lato', sans-serif;
+  --main:#1e1e20;
+  --text:#fff;
+  user-select: none;
+  cursor: default;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 8px;
+	border-radius: 4px !important; /* Ajusta el valor según tu preferencia */
+}
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	background: #afafaf;
+	border: 0px none #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+	background: #ffffff;
+}
+::-webkit-scrollbar-track {
+	background: none;
+	border: 0px none #ffffff;
+}
+::-webkit-scrollbar-track:hover {
+    background: none;
+}
+::-webkit-scrollbar-track:active {
+	background: none;
+}
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.code {
+    background-image: url('../../public/9a10a1e9-7f94-402d-aac6-50f265a62dfc.webp');
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    color: var(--text);
+}

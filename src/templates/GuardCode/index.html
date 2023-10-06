@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <title>Steam Guard Code</title>
+    <link rel="stylesheet" type="text/css" href="../../styles/global.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 1.150rem;
+        }
+
+        .input {
+            background: #2e2e2ea2;
+            width: 115px;
+            height: 40px;
+            outline: none;
+            border: none;
+            color: #ffff;
+            padding: 0 1rem;
+            border-radius: 5px;
+            backdrop-filter: blur(20px);
+            border: 1px solid #5e5e5ea8;
+            font-size: 1.5rem;
+        }
+
+        .content {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:.700rem;
+        }
+
+        .btnContent {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: 1.200rem;
+            height: 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 1px solid #ffffffa8;
+            border-radius: 6px;
+            background: rgba(122, 122, 122, 0.199); 
+            backdrop-filter: blur(20px); 
+            color: #ffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.37); /* Cambiamos el color de fondo al presionar el botón */
+        }
+    </style>
+</head>
+<body class="code">
+    <div class="container">
+      <div>
+        <p class="title">Enter the Steam Guard code</p>
+        <div class="content">
+          <input class="input" type="text" id="steamGuardCode" maxlength="5"
+          oninput="this.value = this.value.toLowerCase();">
+        </div>
+        <div class="btnContent">
+          <button id="submitCode" class="btn">Enter</button>
+        </div>
+  
+      </div>
+    </div>
+  
+    <script src="../../scripts/guardCode.js"></script>
+  </body>
+</html>
