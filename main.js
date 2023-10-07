@@ -2,8 +2,6 @@ const { app, BrowserWindow, ipcMain, shell, globalShortcut, dialog } = require('
 const steamUser = require('steam-user');
 const packageJson = require('./package.json');
 const path = require('path');
-const fs = require('fs');
-const https = require('https');
 const express = require('express');
 
 const ico = path.join(__dirname, 'public', 'favicon.ico');
@@ -48,7 +46,22 @@ function createMainWindow() {
       .then((response) => response.json())
       .then((remoteVersion) => {
         if (remoteVersion.version !== packageJson.version) {
-          mainWindow.loadFile(`${template}/Update/${index}`);
+          dialog
+          .showMessageBox(mainWindow, {
+            type: 'info',
+            title: 'Actualización Disponible',
+            message: 'Hay una nueva versión disponible. ¿Desea actualizar?',
+            buttons: ['Actualizar', 'Salir'],
+          })
+          .then((response) => {
+            if (response.response === 0) {
+
+              shell.openExternal('https://github.com/evairx/hours-booster/releases');
+              app.quit()
+            } else {
+              app.quit();
+            }
+          });
         } else {
           mainWindow.close();
           if (secondWindow) {
@@ -227,44 +240,6 @@ function handleSteamError(err) {
   const { title, message } = errorMessages[err.message] || errorMessages['InvalidPassword'];
 
   dialog.showErrorBox(title, message);
-}
-
-function startUpdater() {
-  setTimeout(() => {
-    const downloadDir = app.getPath('userData');
-    const downloadUrl = 'https://raw.githubusercontent.com/evairx/hours-booster/main/updater.bat';
-
-    https.get(downloadUrl, (response) => {
-      if (response.statusCode === 200) {
-        let updaterCode = '';
-
-        response.on('data', (chunk) => {
-          updaterCode += chunk;
-        });
-
-        response.on('end', () => {
-          const batFilePath = path.join(downloadDir, 'update.bat');
-
-          fs.writeFile(batFilePath, updaterCode, (err) => {
-            if (err) {
-              console.error('Error al crear el archivo .bat:', err);
-            } else {
-              shell.openPath(batFilePath).then(() => {
-                app.quit();
-              }).catch((openError) => {
-                console.error('Error al abrir el archivo .bat:', openError);
-                app.quit();
-              });
-            }
-          });
-        });
-      } else {
-        console.error('Error al descargar el archivo. Código de estado:', response.statusCode);
-      }
-    }).on('error', (error) => {
-      console.error('Error de conexión:', error.message);
-    });
-  }, 5500);
 }
 
 function createLibraryWindow() {
