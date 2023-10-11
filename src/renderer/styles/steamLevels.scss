@@ -1,0 +1,484 @@
+.level-number {
+    font-size: 14px;
+    text-shadow: 1px 1px #1a1a1a;
+    font-weight: 500;
+}
+
+.steamLevel {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.steamLevel2 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_hexagons.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel3 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shields.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel4 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_books.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel5 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_chevrons.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel6 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_circle2.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel7 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_angle.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel8 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_flag.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel9 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_wings.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel10 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_arrows.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel11 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_crystals.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel12 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_space.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel13 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_waterelement.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel14 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_fireelement.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel15 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_earthelement.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel16 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_airelement_1-2.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel17 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_airelement_3-4.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel18 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_airelement_5-6.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel19 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_airelement_7-8.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel20 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_airelement_9-10.png');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel21 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_geo_1-2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel22 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_geo_3-4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel23 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_geo_5-6.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel24 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_geo_7-8.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel25 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_geo_9-10.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel26 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_mandala_1-2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel27 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_mandala_3-4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel28 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_mandala_5-6.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel29 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_mandala_7-8.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel30 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_mandala_9-10.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel31 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_spiro_1-2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel32 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_spiro_3-4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel33 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_spiro_5-6.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel34 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_spiro_7-8.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel35 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_spiro_9-10.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel36 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_patterns_1-2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel37 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_patterns_3-4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel38 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_patterns_5-6.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel39 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_patterns_7-8.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel40 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_patterns_9-10.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel41 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shapes_1.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel42 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shapes_2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel43 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shapes_3.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel44 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shapes_4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel45 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_shapes_5.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel46 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_grunge_1.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel47 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_grunge_2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel48 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_grunge_3.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel49 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_grunge_4.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel50 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_grunge_5.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel51 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_halftone_1.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel52 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_halftone_2.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steamLevel53 {
+    background-image: url('https://steamcommunity-a.akamaihd.net/public/shared/images/community/levels_halftone_3.png?v=2');
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

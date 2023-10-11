@@ -199,11 +199,7 @@ function newUpdate() {
             }
           });
         } else {
-          mainWindow.close();
-          if (secondWindow) {
-            secondWindow.close();
-          }
-          createSecondWindow();
+          
         }
       })
       .catch((error) => {

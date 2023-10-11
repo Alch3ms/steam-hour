@@ -175,158 +175,34 @@ li {
   color: #dddddd;
 }
 
-
-.level-0,
-.level-1,
-.level-2,
-.level-3,
-.level-4,
-.level-5,
-.level-6,
-.level-7,
-.level-8,
-.level-9
-{
-    width: 30px; 
-    height: 30px; 
-    border: 2px solid #9b9b9b;
-    border-radius: 50%; 
+.contentLoad {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: .800rem; 
-    background-color: transparent;
+    align-items: center;
+    height: 100vh;
 }
 
-.level-10,
-.level-11,
-.level-12,
-.level-13,
-.level-14,
-.level-15,
-.level-16,
-.level-17,
-.level-18,
-.level-19 {
-    width: 30px; 
-    height: 30px; 
-    border: 2px solid #c02942;
-    border-radius: 50%; 
+.containerCircle {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
+    margin-bottom: .400rem;
 }
 
-.level-20,
-.level-21,
-.level-22,
-.level-23,
-.level-24,
-.level-25,
-.level-26,
-.level-27,
-.level-28,
-.level-29 {
-    width: 30px; 
-    height: 30px;
-    border: 2px solid #d95b43;
+.loading  {
+    border: 5px solid #3a3a3a;
+    border-top: 5px solid #ffffff;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
 }
 
-.level-30,
-.level-31,
-.level-32,
-.level-33,
-.level-34,
-.level-35,
-.level-36,
-.level-37,
-.level-38,
-.level-39 {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #fecc23;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.level-40,
-.level-41,
-.level-42,
-.level-43,
-.level-44,
-.level-45,
-.level-46,
-.level-47,
-.level-48,
-.level-49 {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #467a3c;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
-}
-
-.level-50,
-.level-51,
-.level-52,
-.level-53,
-.level-54,
-.level-55,
-.level-56,
-.level-57,
-.level-58,
-.level-59 {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #4e8ddb;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
-}
-
-.level-60,
-.level-61,
-.level-62,
-.level-63,
-.level-64,
-.level-65,
-.level-66,
-.level-67,
-.level-68,
-.level-69 {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #7652c9;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: .800rem;
-    background-color: transparent;
+.titleLoad {
+    font-size: 1.2rem;
+    font-weight: 600;
 }
