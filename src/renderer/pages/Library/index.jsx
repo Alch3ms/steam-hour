@@ -112,12 +112,14 @@ const Library = () => {
         const userData = JSON.parse(existingData);
         const { info, games, infoLevel } = userData;
     
-        const userLevelValue = Object.values(infoLevel)[0];
-    
         setAvatarUrl(info.avatar_url_full);
         setPlayerName(info.player_name);
         setGameCount(games.app_count);
-        setPlayerLevel(userLevelValue);
+
+        if (infoLevel && Object.keys(infoLevel).length > 0) {
+          const userLevelValue = Object.values(infoLevel)[0]
+          setPlayerLevel(userLevelValue);
+        }
     
         const sortedGames = games.apps.map((game) => ({ ...game, appid: game.appid })).sort((a, b) => a.name.localeCompare(b.name));
         setAvailableGames(sortedGames);
@@ -130,6 +132,7 @@ const Library = () => {
     }, 2000);
 
   }, []);
+
 
   const filteredGames = availableGames.filter((game) =>
     game.name.toLowerCase().includes(searchText.toLowerCase())
