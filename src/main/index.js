@@ -35,10 +35,6 @@ app.whenReady().then(() => {
     handleFormData(data)
   });
   
-  ipcMain.on('start-boost', (event, selectedGameIds) => {
-    console.log(selectedGameIds);
-  });
-  
   app.on('window-all-closed', () => {
     app.quit();
   });
@@ -124,7 +120,6 @@ function handleFormData(data) {
       user.getPersonas([steamid], async function (err, personas) {
         if (err) {
           console.log(err.message);
-          res.status(500).send('Error obtaining user information');
         } else {
           info = personas[steamid];
           const player = info.player_name;
@@ -151,8 +146,26 @@ function handleFormData(data) {
         }
       });
 
-      userLoggedIn = true; 
+      userLoggedIn = true;
 
+      ipcMain.on('start-boost', (event, selectedGameIds) => {
+        console.log(selectedGameIds);
+
+        user.setPersona(1);
+
+        user.gamesPlayed(selectedGameIds, () => {
+          event.sender.send('boost-started');
+        });
+      });
+      
+      ipcMain.on('stop-boost', (event) => {
+        console.log('stopped boost');
+        user.setPersona(1);
+      
+        user.gamesPlayed([], () => {
+          event.sender.send('boost-stopped');
+        });
+      });
      }
   })
 }

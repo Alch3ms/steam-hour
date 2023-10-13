@@ -14,15 +14,15 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "3.3.2",
+    "child_process": "1.0.2",
+    "electron": "26.2.4",
     "eslint": "8.45.0",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.3",
-    "vite": "4.4.5",
-    "electron": "26.2.4",
-    "child_process": "1.0.2",
-    "sass": "1.69.0",
     "path": "0.12.7",
-    "steam-user": "5.0.1"
+    "sass": "1.69.0",
+    "steam-user": "5.0.1",
+    "vite": "4.4.5"
   }
 }

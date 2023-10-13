@@ -321,18 +321,21 @@ form {
     background-color: rgba(255, 255, 255, 0.37); /* Cambiamos el color de fondo al presionar el botón */
 }
 
+
 .sectionSelect {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap:1rem;
+    gap:.400rem;
 }
 
 .posterContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 115px;
+    height: 115px;
     cursor: pointer;
     position: relative;
 
@@ -364,8 +367,8 @@ form {
     width: 24px;
     border-radius: 5px;
     z-index: 100;
-    top: 5px;
-    right: 19px;
+    top: 7px;
+    right: 12px;
     background-color: rgb(97, 97, 97);
     opacity: 0;
     transition: .3s ease-out;
@@ -398,7 +401,6 @@ form {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    
     &:hover > .addIco  {
         opacity: 1;
     }
@@ -412,6 +414,7 @@ form {
     height: 64px;
     width: 64px;
     transition: all 0.3s ease-out;
+    margin-left: 1.5rem;
     opacity: .5;
     background-image: url("data:image/svg+xml,%3Csvg width='64px' height='64px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Ctitle%3E%3C/title%3E%3Cg id='Complete'%3E%3Cg data-name='add' id='add-2'%3E%3Cg%3E%3Cline fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' x1='12' x2='12' y1='19' y2='5'%3E%3C/line%3E%3Cline fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' x1='5' x2='19' y1='12' y2='12'%3E%3C/line%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -421,6 +424,7 @@ form {
     text-align: center;
     font-weight: 550;
     transition: all 0.3s ease-out;
+    margin-left: 1.5rem;
 }
 
 .contentLoad {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
+import { useNavigate } from 'react-router-dom';
 import '../../styles/library.scss';
 import '../../styles/steamLevels.scss'
 
@@ -98,6 +99,7 @@ const Library = () => {
   const [gameCount, setGameCount] = useState('');
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const { className, style } = getLevelClassAndStyle(playerLevel);
 
@@ -185,8 +187,15 @@ const Library = () => {
     if (selectedGameIds.length === 0) {
       alert('Select at least 1 game to be boosted.');
     } else {
-      //ipcRenderer.send('start-boost', selectedGameIds);
-      console.log(selectedGameIds)
+
+      if (sessionStorage.getItem('games')) {
+        sessionStorage.removeItem('games');
+      }
+      sessionStorage.setItem('games', JSON.stringify(selectedGameIds));
+
+      ipcRenderer.send('start-boost', selectedGameIds);
+
+      navigate('/boosting')
     }
   };
 
@@ -247,7 +256,7 @@ const Library = () => {
               <div className={className} style={style}>
                 <span className="level-number">{playerLevel}</span>
               </div>
-              </div>
+            </div>
             <p className="countGames">{gameCount} games owned</p>
           </div>:<div>Not Data found</div>}
         </div>

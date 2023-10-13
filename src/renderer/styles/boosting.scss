@@ -1,0 +1,62 @@
+.content {
+    display: table;
+    width: 100%;
+    height: 100vh;
+}
+
+.centered {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.count {
+    font-size: 2rem;
+    font-weight: 550;
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:.400rem;
+    margin-top: .600rem;
+}
+
+.gameS {
+    position: relative;
+}
+
+.posterGame {
+    &:hover > .nameGame {
+        display: block;
+    }
+}
+
+.nameGame {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.btn {
+    width: 190px;
+    margin-top: 1.200rem;
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background: none; 
+    backdrop-filter: blur(100px); 
+    color: #ffff;
+    border: 1px solid #757575;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.37); /* Cambiamos el color de fondo al presionar el botón */
+}

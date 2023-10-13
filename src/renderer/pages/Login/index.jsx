@@ -24,6 +24,28 @@ function openLibraryWindow() {
   });
 }
 
+function getCodeResponse() {
+  return new Promise(async (resolve, reject) => {
+    ipcRenderer.send('codeResponse');
+    
+    ipcRenderer.once('codeResponse', async (event, response) => {
+      try {
+        if (response === 'correct') {
+          console.log(response);
+          resolve();
+        } else if (response === 'userNotLoggedIn') {
+          await new Promise((resolve) => setTimeout(resolve, 1000)); 
+          getCodeResponse().then(resolve).catch(reject);
+        } else {
+          reject(new Error('Error obtaining code response'));
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  });
+}
+
 function SteamGuard({ toogleSteamGuard }) {
   const [enteredCode, setEnteredCode] = useState('');
   const navigate = useNavigate();
@@ -118,28 +140,6 @@ function LoginForm({openGithub}) {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  function getCodeResponse() {
-    return new Promise(async (resolve, reject) => {
-      ipcRenderer.send('codeResponse');
-      
-      ipcRenderer.once('codeResponse', async (event, response) => {
-        try {
-          if (response === 'correct') {
-            console.log(response);
-            resolve();
-          } else if (response === 'userNotLoggedIn') {
-            await new Promise((resolve) => setTimeout(resolve, 1000)); 
-            getCodeResponse().then(resolve).catch(reject);
-          } else {
-            reject(new Error('Error obtaining code response'));
-          }
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
   }
 
   async function handleOpenCode() {
@@ -239,8 +239,10 @@ function Select({ openGithub }) {
   const [accountsData, setAccountsData] = useState([]);
   const [selectedUsername, setSelectedUsername] = useState('');
   const [selectedPassword, setSelectedPassword] = useState('');
+  const [showSteamGuard, setShowSteamGuard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false); // Nuevo estado
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showAddContainer, setShowAddContainer] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -248,8 +250,32 @@ function Select({ openGithub }) {
     setAccountsData(accountsDataFromLocalStorage);
   }, []);
 
+  useEffect(() => {
+    const sessionStorageAccounts = JSON.parse(sessionStorage.getItem('accounts')) || [];
+    
+    if (sessionStorageAccounts.length === 3) {
+      setShowAddContainer(false);
+    }
+  }, []);
+
+  const toogleSteamGuard = () => {
+    setShowSteamGuard(!showSteamGuard);
+  };
+
+  async function handleOpenCode() {
+    try {
+      await getCodeResponse();
+      setIsLoading(false);
+      setShowSteamGuard(true);
+      console.log('open steam guard')
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function handleOpenLibrary() {
     try {
+      setIsLoading(true);
       await openLibraryWindow();
       navigate('/library');
     } catch (error) {
@@ -257,8 +283,7 @@ function Select({ openGithub }) {
     }
   }
 
-  const toggleUser = async (account) => {
-    setIsLoading(true);
+  const toggleUser = (account) => {
     setSelectedUsername(account.username);
     setSelectedPassword(account.password);
 
@@ -268,14 +293,10 @@ function Select({ openGithub }) {
     };
 
     ipcRenderer.send('form-data', data);
+    
+    handleOpenLibrary();
 
-    try {
-      await handleOpenLibrary();
-    } catch (error) {
-      console.error(error);
-    }
-
-    setIsLoading(false);
+    handleOpenCode()
   };
 
   const toggleAddUser = () => {
@@ -321,13 +342,16 @@ function Select({ openGithub }) {
             </main>
           ))}
           <main>
+          {showAddContainer && 
             <div className="addContainer" onClick={toggleAddUser}>
               <div className="addIco" />
             </div>
+            }
             <p className="addUser">
               Add User
             </p>
           </main>
+          {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard} />}
         </section>
       )}
     </>
