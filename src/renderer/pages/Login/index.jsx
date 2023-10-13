@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState , useEffect} from 'react';
 const { ipcRenderer, shell } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import '../../styles/login.scss';
@@ -57,31 +57,35 @@ function SteamGuard({ toogleSteamGuard }) {
   };
 
   return (
-    <div className="containerCode">
-      <div className="contentSS">
+    <section className="containerCode">
+      <main className="contentSS">
         <div className='closeIco' onClick={toogleSteamGuard}></div>
-        <p className="titleCode">Enter the Steam Guard code</p>
-        <div className="contentCode">
-          <input
-            className="inputCode"
-            type="text"
-            maxLength="5"
-            value={enteredCode}
-            onChange={handleCodeChange}
-            onKeyUp={handleKeyUp}
-          />
+        <div className="main">
+          <div>
+            <p className="titleCode">Enter the Steam Guard code</p>
+            <div className="contentCode">
+              <input
+                className="inputCode"
+                type="text"
+                maxLength="5"
+                value={enteredCode}
+                onChange={handleCodeChange}
+                onKeyUp={handleKeyUp}
+              />
+            </div>
+            <div className="btnContentCode">
+              <button className="btnCode" onClick={handleSubmit}>
+                Enter
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="btnContentCode">
-          <button className="btnCode" onClick={handleSubmit}>
-            Enter
-          </button>
-        </div>
-      </div>
-    </div>
+      </main>
+    </section>
   );
 }
 
-function Login() {
+function LoginForm({openGithub}) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordLength, setPasswordLength] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
@@ -173,11 +177,6 @@ function Login() {
     handleOpenCode()
   };
 
-  function openGithub() {
-    const url = 'https://github.com/evairx/hours-booster';
-    shell.openExternal(url);
-  }
-
   return (
     <>
     <main className='container'>
@@ -216,7 +215,9 @@ function Login() {
                 </div>
                 <p className="titleRember">Remember me</p>
               </div>
-  
+                    
+            {showSteamGuard ? undefined
+            :
               <div className="buttonContent">
                 <div className="btnS">
                   <button className="btnLogin" type="submit">
@@ -224,12 +225,127 @@ function Login() {
                   </button>
                 </div>
               </div>
+            }
             </div>
           </div>
         </form>
       </main>
       {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard} />}
     </>
+  );
+}
+
+function Select({ openGithub }) {
+  const [accountsData, setAccountsData] = useState([]);
+  const [selectedUsername, setSelectedUsername] = useState('');
+  const [selectedPassword, setSelectedPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false); // Nuevo estado
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const accountsDataFromLocalStorage = JSON.parse(localStorage.getItem('accounts')) || [];
+    setAccountsData(accountsDataFromLocalStorage);
+  }, []);
+
+  async function handleOpenLibrary() {
+    try {
+      await openLibraryWindow();
+      navigate('/library');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const toggleUser = async (account) => {
+    setIsLoading(true);
+    setSelectedUsername(account.username);
+    setSelectedPassword(account.password);
+
+    const data = {
+      username: account.username,
+      password: account.password,
+    };
+
+    ipcRenderer.send('form-data', data);
+
+    try {
+      await handleOpenLibrary();
+    } catch (error) {
+      console.error(error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const toggleAddUser = () => {
+    setShowLoginForm(!showLoginForm);
+  };
+
+  return (
+    <>
+      {showLoginForm ? (
+        <>
+          <div className="Back" onClick={toggleAddUser}>
+            <div className="backIco"/>
+            Back
+          </div>
+          <LoginForm />
+        </>
+      ) : isLoading ? (
+        <section className="contentLoad">
+          <main>
+            <div className="containerCircle">
+              <div className="loading" />
+            </div>
+            <p className="titleLoad">Connecting to steam...</p>
+          </main>
+        </section>
+      ) : (
+        <section className="sectionSelect">
+          <div className="github" onClick={openGithub} />
+          {accountsData.map((account, index) => (
+            <main key={index}>
+              <div className="posterContainer">
+                <img
+                  src={account.avatar_url_full}
+                  className="posterSelect"
+                  draggable="false"
+                  onClick={() => toggleUser(account)}
+                />
+                <div className="settingsContent">
+                  <div className="settingsIco" />
+                </div>
+              </div>
+              <p className="nameUser">{account.player_name}</p>
+            </main>
+          ))}
+          <main>
+            <div className="addContainer" onClick={toggleAddUser}>
+              <div className="addIco" />
+            </div>
+            <p className="addUser">
+              Add User
+            </p>
+          </main>
+        </section>
+      )}
+    </>
+  );
+}
+
+function Login() {
+  const accountsData = JSON.parse(localStorage.getItem('accounts')) || [];
+
+  function openGithub() {
+    const url = 'https://github.com/evairx/hours-booster';
+    shell.openExternal(url);
+  }
+
+  return !accountsData || accountsData.length === 0 ? (
+    <LoginForm openGithub={openGithub} />
+  ) : (
+    <Select openGithub={openGithub}/>
   );
 }
 

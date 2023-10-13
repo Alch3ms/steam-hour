@@ -110,7 +110,7 @@ const Library = () => {
     
       if (existingData) {
         const userData = JSON.parse(existingData);
-        const { info, games, infoLevel } = userData;
+        const { info, games, infoLevel, data } = userData;
     
         setAvatarUrl(info.avatar_url_full);
         setPlayerName(info.player_name);
@@ -124,15 +124,32 @@ const Library = () => {
         const sortedGames = games.apps.map((game) => ({ ...game, appid: game.appid })).sort((a, b) => a.name.localeCompare(b.name));
         setAvailableGames(sortedGames);
 
-        setLoading(false);
+        if (data.isChecked) {
+          const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
+          const duplicateAccount = accounts.find((account) =>
+            account.password === data.password && account.username === data.username
+          );
+
+          if (!duplicateAccount) {
+            accounts.push({
+              password: data.password,
+              username: data.username,
+              avatar_url_full: info.avatar_url_full,
+              player_name: info.player_name,
+            });
+
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+          }
+        }
+
+        setLoading(false);
       } else {
         console.log("No data found in sessionStorage.");
       }
     }, 2000);
 
   }, []);
-
 
   const filteredGames = availableGames.filter((game) =>
     game.name.toLowerCase().includes(searchText.toLowerCase())

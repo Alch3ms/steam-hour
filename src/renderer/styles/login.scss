@@ -264,6 +264,25 @@ form {
     font-size: 1.150rem;
 }
 
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+}
+
+.titleCode {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.contentCode {
+    display: flex;
+    justify-content: center;
+    padding: .900rem;
+}
+
 .inputCode {
     background: #2e2e2ea2;
     width: 115px;
@@ -271,9 +290,186 @@ form {
     outline: none;
     border: none;
     color: #ffff;
-    padding: 0 1rem;
+    text-align: center;
     border-radius: 5px;
     backdrop-filter: blur(20px);
     border: 1px solid #5e5e5ea8;
     font-size: 1.5rem;
+}
+
+.btnContentCode {
+    display: flex;
+    justify-content: center;
+}
+
+.btnCode {
+    width: 150px;
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 1px solid #ffffffa8;
+    border-radius: 6px;
+    background: rgba(122, 122, 122, 0.199); 
+    backdrop-filter: blur(20px); 
+    color: #241d1d;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.btnCode:hover {
+    background-color: rgba(255, 255, 255, 0.37); /* Cambiamos el color de fondo al presionar el botón */
+}
+
+.sectionSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap:1rem;
+}
+
+.posterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    &:hover > .posterSelect {
+        border: 2px solid #fff;
+        margin-bottom: 10px;
+    }
+
+    &:hover > .settingsContent {
+        opacity: 1;
+    }
+
+    &:hover + .nameUser {
+        opacity: 1;
+    }
+}
+
+.posterSelect {
+    width: 104px;
+    height: 104px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-out;
+}
+
+.settingsContent {
+    position: absolute;
+    height: 14px;
+    width: 24px;
+    border-radius: 5px;
+    z-index: 100;
+    top: 5px;
+    right: 19px;
+    background-color: rgb(97, 97, 97);
+    opacity: 0;
+    transition: .3s ease-out;
+
+    &:hover {
+        background-color: rgb(255, 255, 255)
+    }
+
+    &:hover > .settingsIco {
+        background-image: url("data:image/svg+xml,%3Csvg fill='%23000000' width='24px' height='14px' viewBox='0 0 32 32' version='1.1' xmlns='http://www.w3.org/2000/svg' stroke='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M28.106 19.944h-0.85c-0.069-0.019-0.131-0.050-0.2-0.063-1.788-0.275-3.2-1.762-3.319-3.506-0.137-1.95 0.975-3.6 2.787-4.137 0.238-0.069 0.488-0.119 0.731-0.181h0.85c0.056 0.019 0.106 0.050 0.169 0.056 1.65 0.269 2.906 1.456 3.262 3.081 0.025 0.125 0.063 0.25 0.094 0.375v0.85c-0.019 0.056-0.050 0.113-0.056 0.169-0.262 1.625-1.419 2.863-3.025 3.238-0.156 0.038-0.3 0.081-0.444 0.119zM4.081 12.056l0.85 0c0.069 0.019 0.131 0.050 0.2 0.056 1.8 0.281 3.206 1.775 3.319 3.537 0.125 1.944-1 3.588-2.819 4.119-0.231 0.069-0.469 0.119-0.7 0.175h-0.85c-0.056-0.019-0.106-0.050-0.162-0.063-1.625-0.3-2.688-1.244-3.194-2.819-0.069-0.206-0.106-0.425-0.162-0.637v-0.85c0.019-0.056 0.050-0.113 0.056-0.169 0.269-1.631 1.419-2.863 3.025-3.238 0.15-0.037 0.294-0.075 0.437-0.113zM15.669 12.056h0.85c0.069 0.019 0.131 0.050 0.2 0.063 1.794 0.281 3.238 1.831 3.313 3.581 0.087 1.969-1.1 3.637-2.931 4.106-0.194 0.050-0.387 0.094-0.581 0.137h-0.85c-0.069-0.019-0.131-0.050-0.2-0.063-1.794-0.275-3.238-1.831-3.319-3.581-0.094-1.969 1.1-3.637 2.931-4.106 0.2-0.050 0.394-0.094 0.588-0.137z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    }
+}
+
+.settingsIco {
+    height: 14px;
+    width: 24px;
+    transition: .3s ease-out;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23ffffff' width='24px' height='14px' viewBox='0 0 32 32' version='1.1' xmlns='http://www.w3.org/2000/svg' stroke='%23ffffff'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M28.106 19.944h-0.85c-0.069-0.019-0.131-0.050-0.2-0.063-1.788-0.275-3.2-1.762-3.319-3.506-0.137-1.95 0.975-3.6 2.787-4.137 0.238-0.069 0.488-0.119 0.731-0.181h0.85c0.056 0.019 0.106 0.050 0.169 0.056 1.65 0.269 2.906 1.456 3.262 3.081 0.025 0.125 0.063 0.25 0.094 0.375v0.85c-0.019 0.056-0.050 0.113-0.056 0.169-0.262 1.625-1.419 2.863-3.025 3.238-0.156 0.038-0.3 0.081-0.444 0.119zM4.081 12.056l0.85 0c0.069 0.019 0.131 0.050 0.2 0.056 1.8 0.281 3.206 1.775 3.319 3.537 0.125 1.944-1 3.588-2.819 4.119-0.231 0.069-0.469 0.119-0.7 0.175h-0.85c-0.056-0.019-0.106-0.050-0.162-0.063-1.625-0.3-2.688-1.244-3.194-2.819-0.069-0.206-0.106-0.425-0.162-0.637v-0.85c0.019-0.056 0.050-0.113 0.056-0.169 0.269-1.631 1.419-2.863 3.025-3.238 0.15-0.037 0.294-0.075 0.437-0.113zM15.669 12.056h0.85c0.069 0.019 0.131 0.050 0.2 0.063 1.794 0.281 3.238 1.831 3.313 3.581 0.087 1.969-1.1 3.637-2.931 4.106-0.194 0.050-0.387 0.094-0.581 0.137h-0.85c-0.069-0.019-0.131-0.050-0.2-0.063-1.794-0.275-3.238-1.831-3.319-3.581-0.094-1.969 1.1-3.637 2.931-4.106 0.2-0.050 0.394-0.094 0.588-0.137z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+
+.nameUser {
+    opacity: 0;
+    text-align: center;
+    font-weight: 550;
+    transition: all 0.3s ease-out;
+}
+
+.addContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+    &:hover > .addIco  {
+        opacity: 1;
+    }
+
+    &:hover + .addUser {
+        opacity: 1;
+    }
+}
+
+.addIco {
+    height: 64px;
+    width: 64px;
+    transition: all 0.3s ease-out;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg width='64px' height='64px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Ctitle%3E%3C/title%3E%3Cg id='Complete'%3E%3Cg data-name='add' id='add-2'%3E%3Cg%3E%3Cline fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' x1='12' x2='12' y1='19' y2='5'%3E%3C/line%3E%3Cline fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' x1='5' x2='19' y1='12' y2='12'%3E%3C/line%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.addUser {
+    opacity: 0;
+    text-align: center;
+    font-weight: 550;
+    transition: all 0.3s ease-out;
+}
+
+.contentLoad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.containerCircle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .400rem;
+}
+
+.loading  {
+    border: 5px solid #3a3a3a;
+    border-top: 5px solid #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.titleLoad {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+.Back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.backIco {
+    height: 42px;
+    width: 42px;
+    background-image: url("data:image/svg+xml,%3Csvg width='42px' height='42px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M6 12H18M6 12L11 7M6 12L11 17' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
 }
