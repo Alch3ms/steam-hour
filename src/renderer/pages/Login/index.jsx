@@ -107,12 +107,11 @@ function SteamGuard({ toogleSteamGuard }) {
   );
 }
 
-function LoginForm({openGithub}) {
+function LoginForm({openGithub }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordLength, setPasswordLength] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
   const [showSteamGuard, setShowSteamGuard] = useState(false);
-  const [ipcResponse, setIpcResponse] = useState(null);
   const navigate = useNavigate();
 
   const toggleCheckbox = () => {
@@ -235,7 +234,7 @@ function LoginForm({openGithub}) {
   );
 }
 
-function Select({ openGithub }) {
+function Select({ openGithub, accountData  }) {
   const [accountsData, setAccountsData] = useState([]);
   const [selectedUsername, setSelectedUsername] = useState('');
   const [selectedPassword, setSelectedPassword] = useState('');
@@ -248,10 +247,9 @@ function Select({ openGithub }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const accountsDataFromLocalStorage = JSON.parse(localStorage.getItem('accounts')) || [];
-    setAccountsData(accountsDataFromLocalStorage);
+    setAccountsData(accountData );
 
-    if (accountsDataFromLocalStorage.length === 3) {
+    if (accountData .length === 3) {
       setShowAddContainer(false);
     } else {
       setShowAddContainer(true);
@@ -313,9 +311,7 @@ function Select({ openGithub }) {
   function OptionsUser({ account }) {
 
     const deleteAccount = () => {
-      const storedAccounts = JSON.parse(localStorage.getItem('accounts')) || [];
-
-      const updatedAccounts = storedAccounts.filter((storedAccount) => storedAccount.username !== account.username);
+      const updatedAccounts = accountData.filter((storedAccount) => storedAccount.username !== account.username);
 
       localStorage.setItem('accounts', JSON.stringify(updatedAccounts));
 
@@ -397,17 +393,17 @@ function Select({ openGithub }) {
 }
 
 function Login() {
-  const accountsData = JSON.parse(localStorage.getItem('accounts')) || [];
+  const accountData = JSON.parse(localStorage.getItem('accounts')) || [];
 
   function openGithub() {
     const url = 'https://github.com/evairx/hours-booster';
     shell.openExternal(url);
   }
 
-  return !accountsData || accountsData.length === 0 ? (
+  return !accountData  || accountData .length === 0 ? (
     <LoginForm openGithub={openGithub} />
   ) : (
-    <Select openGithub={openGithub}/>
+    <Select openGithub={openGithub} accountData={accountData}/>
   );
 }
 
