@@ -143,6 +143,7 @@ li {
 }
 
 .header {
+    margin-top: 1.50rem;
     display: flex;
     justify-content: left;
     backdrop-filter: blur(30px);
@@ -212,4 +213,20 @@ li {
 .titleLoad {
     font-size: 1.2rem;
     font-weight: 600;
+}
+
+.vacIco {
+    height: 18px;
+    width: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg width='18px' height='18px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Ccircle cx='12' cy='17' r='1' fill='%23ffffff'%3E%3C/circle%3E%3Cpath d='M12 10L12 14' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M3.44722 18.1056L10.2111 4.57771C10.9482 3.10361 13.0518 3.10362 13.7889 4.57771L20.5528 18.1056C21.2177 19.4354 20.2507 21 18.7639 21H5.23607C3.7493 21 2.78231 19.4354 3.44722 18.1056Z' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+
+.vacBans {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(175, 1, 1, 0.76);
+    padding: .200rem .600rem;
+    border-radius: 8px;
+    font-size: .800rem;
 }

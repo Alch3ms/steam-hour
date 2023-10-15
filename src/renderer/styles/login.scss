@@ -50,7 +50,7 @@
     position: absolute;
     width: 42px;
     height: 42px;
-    top: 1rem;
+    top: 2rem;
     right: 1rem;
     cursor: pointer;
     background-repeat:no-repeat;
@@ -391,9 +391,13 @@ form {
 
 .nameUser {
     opacity: 0;
-    text-align: center;
     font-weight: 550;
     transition: all 0.3s ease-out;
+    width: 104px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .addContainer {
@@ -408,6 +412,55 @@ form {
     &:hover + .addUser {
         opacity: 1;
     }
+}
+
+.contenOptions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(50px);
+    width: 250px;
+    height: 120px;
+    padding: .300rem .800rem;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.33);
+    z-index: 600;
+}
+
+.closeIcoOptions {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    top:5px;
+    cursor: pointer;
+    right: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg width='28px' height='28px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.9393 12L6.9696 15.9697L8.03026 17.0304L12 13.0607L15.9697 17.0304L17.0304 15.9697L13.0607 12L17.0303 8.03039L15.9696 6.96973L12 10.9393L8.03038 6.96973L6.96972 8.03039L10.9393 12Z' fill='%23ffffff'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+
+.deleteContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-top: 1px solid #ffffff75;
+    margin-top: 10px;
+    padding: .400rem;
+}
+
+.deleteIco {
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M10 12V17' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M14 12V17' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M4 7H20' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    pointer-events: auto;
+    overflow-y: hidden;
 }
 
 .addIco {
@@ -462,7 +515,7 @@ form {
 
 .Back {
     position: absolute;
-    top: 10px;
+    top: 30px;
     left: 10px;
     display: flex;
     justify-self: center;

@@ -240,6 +240,8 @@ function Select({ openGithub }) {
   const [selectedUsername, setSelectedUsername] = useState('');
   const [selectedPassword, setSelectedPassword] = useState('');
   const [showSteamGuard, setShowSteamGuard] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showAddContainer, setShowAddContainer] = useState(true);
@@ -248,13 +250,11 @@ function Select({ openGithub }) {
   useEffect(() => {
     const accountsDataFromLocalStorage = JSON.parse(localStorage.getItem('accounts')) || [];
     setAccountsData(accountsDataFromLocalStorage);
-  }, []);
 
-  useEffect(() => {
-    const sessionStorageAccounts = JSON.parse(sessionStorage.getItem('accounts')) || [];
-    
-    if (sessionStorageAccounts.length === 3) {
+    if (accountsDataFromLocalStorage.length === 3) {
       setShowAddContainer(false);
+    } else {
+      setShowAddContainer(true);
     }
   }, []);
 
@@ -292,6 +292,8 @@ function Select({ openGithub }) {
       password: account.password,
     };
 
+    console.log(data)
+
     ipcRenderer.send('form-data', data);
     
     handleOpenLibrary();
@@ -302,6 +304,41 @@ function Select({ openGithub }) {
   const toggleAddUser = () => {
     setShowLoginForm(!showLoginForm);
   };
+
+  function toggleOptions(account) {
+    setShowOptions(!showOptions);
+    setSelectedAccount(account);
+  }
+
+  function OptionsUser({ account }) {
+
+    const deleteAccount = () => {
+      const storedAccounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+      const updatedAccounts = storedAccounts.filter((storedAccount) => storedAccount.username !== account.username);
+
+      localStorage.setItem('accounts', JSON.stringify(updatedAccounts));
+
+      setShowAddContainer(updatedAccounts.length < 3);
+      setAccountsData(updatedAccounts);
+
+      toggleOptions(null);
+    };
+    
+    return (
+      <>
+        <div className='contenOptions'>
+          <div className='closeIcoOptions' onClick={() => toggleOptions(null)}></div>
+          <h1>Options</h1>
+          <div className='deleteContainer' onClick={deleteAccount}>
+            <div className='deleteIco'></div>
+            <p className='deleteTitle'>Delete User</p>
+          </div>
+        </div>
+        <div className='overlay'></div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -334,23 +371,24 @@ function Select({ openGithub }) {
                   draggable="false"
                   onClick={() => toggleUser(account)}
                 />
-                <div className="settingsContent">
+                <div className="settingsContent" onClick={() => toggleOptions(account)}>
                   <div className="settingsIco" />
                 </div>
               </div>
               <p className="nameUser">{account.player_name}</p>
+              {showOptions && selectedAccount === account && <OptionsUser account={selectedAccount} />}
             </main>
           ))}
-          <main>
-          {showAddContainer && 
-            <div className="addContainer" onClick={toggleAddUser}>
-              <div className="addIco" />
-            </div>
-            }
-            <p className="addUser">
-              Add User
-            </p>
-          </main>
+          {showAddContainer && (
+            <main>
+              <div className="addContainer" onClick={toggleAddUser}>
+                <div className="addIco" />
+              </div>
+              <p className="addUser">
+                Add User
+              </p>
+            </main>
+            )}
           {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard} />}
         </section>
       )}

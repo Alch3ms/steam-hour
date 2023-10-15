@@ -97,6 +97,7 @@ const Library = () => {
   const [playerName, setPlayerName] = useState('');
   const [playerLevel, setPlayerLevel] = useState('');
   const [gameCount, setGameCount] = useState('');
+  const [vacBans, setVacBans] = useState('');
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -112,15 +113,30 @@ const Library = () => {
     
       if (existingData) {
         const userData = JSON.parse(existingData);
-        const { info, games, infoLevel, data } = userData;
+        const { info, games, infoLevel, data, vac } = userData;
     
         setAvatarUrl(info.avatar_url_full);
         setPlayerName(info.player_name);
-        setGameCount(games.app_count);
+
+        if (games && games.app_count) {
+          setGameCount(games.app_count);
+        } else {
+          console.error("El objeto 'games' o su propiedad 'app_count' no están definidos.");
+        }
 
         if (infoLevel && Object.keys(infoLevel).length > 0) {
           const userLevelValue = Object.values(infoLevel)[0]
           setPlayerLevel(userLevelValue);
+        }
+
+        if (vac && typeof vac.numBans !== 'undefined') {
+          if (vac.numBans) {
+            setVacBans(vac);
+          } else {
+            console.error("El objeto 'vac' está definido, pero 'numBans' no es igual a 0.");
+          }
+        } else {
+          console.error("El objeto 'vac' no está definido o 'numBans' no está definido.");
         }
     
         const sortedGames = games.apps.map((game) => ({ ...game, appid: game.appid })).sort((a, b) => a.name.localeCompare(b.name));
@@ -219,7 +235,8 @@ const Library = () => {
 
   const displayAvailableGames = () => {
     return filteredGames.map((game) => (
-      <li className="li-games" key={game.appid} onClick={() => moveGame(game)}>
+      <>
+      {game.img_icon_url && <li className="li-games" key={game.appid} onClick={() => moveGame(game)}>
         <img
           src={game.img_icon_url}
           className="poster"
@@ -231,9 +248,14 @@ const Library = () => {
           <p>{game.name}</p>
           <p className="hours">{(game.playtime_forever / 60).toFixed(1)} h played</p>
         </div>
-      </li>
+      </li>}
+      </>
     ));
   };
+
+  function CloseAccount() {
+    ipcRenderer.send('close-session');
+  }
 
   return (
     <>
@@ -251,11 +273,15 @@ const Library = () => {
         <div className="header">
           {avatarUrl ? <img src={avatarUrl} className="avatar" alt="" />:<img src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" className="avatar" alt="" />}
           {playerName ? <div>
-            <div className="playerName">
+            <div className="playerName" onClick={CloseAccount}>
               {playerName}
               <div className={className} style={style}>
                 <span className="level-number">{playerLevel}</span>
               </div>
+              {vacBans && <div className="vacBans">
+                <div className='vacIco'/>
+                <p className='vac'>Vac Banned</p>
+              </div>}
             </div>
             <p className="countGames">{gameCount} games owned</p>
           </div>:<div>Not Data found</div>}

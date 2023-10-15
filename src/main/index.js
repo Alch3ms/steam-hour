@@ -16,23 +16,32 @@ function createMainWindow() {
       height: 550,
       resizable: false,
       fullscreenable: false,
+      frame:false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
       },
       title: 'Hours Booster',
     });
-    
+
     newUpdate()
 
     mainWindow.loadURL(url)
+
+    ipcMain.on('manualMinimize', () => {
+      mainWindow.minimize();
+    });
+
+    ipcMain.on('manualClose', () => {
+      app.quit();
+    });
 }
 
 app.whenReady().then(() => {
   createMainWindow();
-  
+
   ipcMain.on('form-data', (event, data) => {
-    handleFormData(data)
+      handleFormData(data);
   });
   
   app.on('window-all-closed', () => {
@@ -113,7 +122,7 @@ function handleFormData(data) {
         if (!infoSent && !levelSent && !gamesSent) {
           event.sender.send('dataInfo', 'userNotLoggedIn');
         } else {
-          event.sender.send('dataInfo', { info, infoLevel, games, data});
+          event.sender.send('dataInfo', { info, infoLevel, games, data, vac: user.vac});
         }
       });
       
