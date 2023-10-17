@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const steamUser = require('steam-user');
 const packageJson = require('../../package.json');
 const config = require('../../config')
@@ -200,31 +200,31 @@ function handleSteamError(err) {
 function newUpdate() {
   const versionUrl = 'https://raw.githubusercontent.com/evairx/hours-booster/main/version.json';
 
-    fetch(versionUrl)
-      .then((response) => response.json())
-      .then((remoteVersion) => {
-        if (remoteVersion.version !== packageJson.version) {
-          dialog
+  fetch(versionUrl)
+    .then((response) => response.json())
+    .then((remoteVersion) => {
+      if (remoteVersion.version !== packageJson.version) {
+        dialog
           .showMessageBox(mainWindow, {
             type: 'info',
-            title: 'Actualización Disponible',
-            message: 'Hay una nueva versión disponible. ¿Desea actualizar?',
-            buttons: ['Actualizar', 'Salir'],
+            title: 'Update Available',
+            message: 'There is a new version available, do you want to upgrade?',
+            buttons: ['Update Now', 'Exit'],
           })
           .then((response) => {
             if (response.response === 0) {
-
               shell.openExternal('https://github.com/evairx/hours-booster/releases');
-              app.quit()
+              app.quit();
             } else {
               app.quit();
             }
+          })
+          .catch((error) => {
+            console.error('Error displaying update dialog:', error);
           });
-        } else {
-          
-        }
-      })
-      .catch((error) => {
-        console.error('Error al verificar la versión remota:', error);
-      });
+      }
+    })
+    .catch((error) => {
+      console.error('Error verifying remote version:', error);
+    });
 }

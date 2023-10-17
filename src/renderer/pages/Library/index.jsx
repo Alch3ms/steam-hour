@@ -253,10 +253,6 @@ const Library = () => {
     ));
   };
 
-  function CloseAccount() {
-    ipcRenderer.send('close-session');
-  }
-
   return (
     <>
     {loading ?
@@ -273,7 +269,7 @@ const Library = () => {
         <div className="header">
           {avatarUrl ? <img src={avatarUrl} className="avatar" alt="" />:<img src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" className="avatar" alt="" />}
           {playerName ? <div>
-            <div className="playerName" onClick={CloseAccount}>
+            <div className="playerName">
               {playerName}
               <div className={className} style={style}>
                 <span className="level-number">{playerLevel}</span>

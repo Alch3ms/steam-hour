@@ -21,9 +21,7 @@ function Menu() {
   }
 
   return (
-    <nav
-      className="MenuContent"
-    >
+    <nav className="MenuContent">
       <p className="titleMenu">Hours Booster</p>
       <ul className='buttonsUL'>
         <li className="minimizeIco" onClick={handleMinimizeClick}></li>

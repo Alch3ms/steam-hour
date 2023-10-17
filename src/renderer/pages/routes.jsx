@@ -1,6 +1,7 @@
 import { Routes, Route} from 'react-router-dom';
 
 import Menu from '../components/menu';
+import Version from '../components/version';
 
 import Login from "./Login";
 import Library from "./Library";
@@ -15,6 +16,7 @@ function routes() {
                 <Route path="/library" element={<Library />} />
                 <Route path="/boosting" element={<Boosting />} />
             </Routes>
+            <Version/>
         </>
     )
 }

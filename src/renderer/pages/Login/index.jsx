@@ -48,6 +48,7 @@ function getCodeResponse() {
 
 function SteamGuard({ toogleSteamGuard }) {
   const [enteredCode, setEnteredCode] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleCodeChange = (event) => {
@@ -66,6 +67,7 @@ function SteamGuard({ toogleSteamGuard }) {
 
   const handleSubmit = () => {
     if (enteredCode) {
+      setIsLoading(true);
       ipcRenderer.send('submit-code', enteredCode);
 
       handleOpenLibrary()
@@ -79,31 +81,46 @@ function SteamGuard({ toogleSteamGuard }) {
   };
 
   return (
-    <section className="containerCode">
-      <main className="contentSS">
-        <div className='closeIco' onClick={toogleSteamGuard}></div>
-        <div className="main">
-          <div>
-            <p className="titleCode">Enter the Steam Guard code</p>
-            <div className="contentCode">
-              <input
-                className="inputCode"
-                type="text"
-                maxLength="5"
-                value={enteredCode}
-                onChange={handleCodeChange}
-                onKeyUp={handleKeyUp}
-              />
-            </div>
-            <div className="btnContentCode">
-              <button className="btnCode" onClick={handleSubmit}>
-                Enter
-              </button>
+    <>
+    {isLoading ?
+      <section className="containerCode">
+        <main className="contentSS">
+          <div className="main">
+            <main>
+              <div className="containerCircle">
+                <div className="loading" />
+              </div>
+              <p className="titleLoad">Validating Steam Guard...</p>
+            </main>
+          </div>
+        </main>
+      </section>:
+      <section className="containerCode">
+        <main className="contentSS">
+          <div className='closeIco' onClick={toogleSteamGuard}></div>
+          <div className="main">
+            <div>
+              <p className="titleCode">Enter the Steam Guard code</p>
+              <div className="contentCode">
+                <input
+                  className="inputCode"
+                  type="text"
+                  maxLength="5"
+                  value={enteredCode}
+                  onChange={handleCodeChange}
+                  onKeyUp={handleKeyUp}
+                />
+              </div>
+              <div className="btnContentCode">
+                <button className="btnCode" onClick={handleSubmit}>
+                  Enter
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </section>
+        </main>
+      </section>}
+    </>
   );
 }
 
