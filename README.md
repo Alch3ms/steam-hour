@@ -1,4 +1,7 @@
+
  <p align="center">  <img src="https://i.ibb.co/MMS3Ymn/logo-Read-ME.jpg">  </p>
+
+![Downloads](https://img.shields.io/github/downloads/evairx/hours-booster/total.svg) ![Latest Version](https://img.shields.io/github/v/tag/evairx/hours-booster?label=Latest%20Version)
 
 
 # Preview
