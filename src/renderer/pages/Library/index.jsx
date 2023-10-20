@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../../styles/library.scss';
 import '../../styles/steamLevels.scss'
 
@@ -100,6 +101,7 @@ const Library = () => {
   const [vacBans, setVacBans] = useState('');
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { className, style } = getLevelClassAndStyle(playerLevel);
@@ -121,7 +123,7 @@ const Library = () => {
         if (games && games.app_count) {
           setGameCount(games.app_count);
         } else {
-          console.error("El objeto 'games' o su propiedad 'app_count' no están definidos.");
+          console.error("The object 'games' or its property 'app_count' are not defined.");
         }
 
         if (infoLevel && Object.keys(infoLevel).length > 0) {
@@ -133,10 +135,10 @@ const Library = () => {
           if (vac.numBans) {
             setVacBans(vac);
           } else {
-            console.error("El objeto 'vac' está definido, pero 'numBans' no es igual a 0.");
+            console.error("The object 'vac' is defined, but 'numBans' is not equal to 0.");
           }
         } else {
-          console.error("El objeto 'vac' no está definido o 'numBans' no está definido.");
+          console.error("The object 'vac' is not defined or 'numBans' is not defined.");
         }
     
         const sortedGames = games.apps.map((game) => ({ ...game, appid: game.appid })).sort((a, b) => a.name.localeCompare(b.name));
@@ -174,7 +176,7 @@ const Library = () => {
   );
 
   const moveGame = (game) => {
-    if (selectedGames.length < 5) {
+    if (selectedGames.length < 33) {
       const index = availableGames.findIndex((g) => g.appid === game.appid);
       if (index !== -1) {
         const updatedAvailableGames = [...availableGames];
@@ -183,7 +185,7 @@ const Library = () => {
         setAvailableGames(updatedAvailableGames);
       }
     } else {
-      alert('In this version, you can only select a maximum of 5 games.');
+      alert(t('MaxGames'));
     }
   };
 
@@ -201,7 +203,7 @@ const Library = () => {
     const selectedGameIds = selectedGames.map((game) => game.appid);
 
     if (selectedGameIds.length === 0) {
-      alert('Select at least 1 game to be boosted.');
+      alert(t('MinGames'));
     } else {
 
       if (sessionStorage.getItem('games')) {
@@ -227,7 +229,7 @@ const Library = () => {
         />
         <div className="contentGames">
           <p>{game.name}</p>
-          <p className="hours">{(game.playtime_forever / 60).toFixed(1)} h played</p>
+          <p className="hours">{(game.playtime_forever / 60).toFixed(1)} {t('Played')}</p>
         </div>
       </li>
     ));
@@ -246,7 +248,7 @@ const Library = () => {
         />
         <div className="contentGames">
           <p>{game.name}</p>
-          <p className="hours">{(game.playtime_forever / 60).toFixed(1)} h played</p>
+          <p className="hours">{(game.playtime_forever / 60).toFixed(1)} {t('Played')}</p>
         </div>
       </li>}
       </>
@@ -261,7 +263,7 @@ const Library = () => {
           <div className="containerCircle">
             <div className="loading"/>
           </div>
-          <p className="titleLoad">Loading Data...</p>
+          <p className="titleLoad">{t('LoadData')}</p>
         </main>
       </section>
       :
@@ -276,10 +278,10 @@ const Library = () => {
               </div>
               {vacBans && <div className="vacBans">
                 <div className='vacIco'/>
-                <p className='vac'>Vac Banned</p>
+                <p className='vac'>{t('Vac')}</p>
               </div>}
             </div>
-            <p className="countGames">{gameCount} games owned</p>
+            <p className="countGames">{gameCount} {t('GamesOwned')}</p>
           </div>:<div>Not Data found</div>}
         </div>
         <div className="container">
@@ -287,7 +289,7 @@ const Library = () => {
             <div>
               <div className="game-box">
                 <div className="header-sub">
-                  <p className="box-title">Library</p>
+                  <p className="box-title">{t('Library')}</p>
                   <div className="right-content">
                     <div className="searchContent">
                       <input
@@ -295,7 +297,7 @@ const Library = () => {
                         className="search"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
-                        placeholder="Search games..."
+                        placeholder={t('Search')}
                       />
                       <div className="searchIco"></div>
                     </div>
@@ -307,7 +309,7 @@ const Library = () => {
 
               <div className="game-box">
                 <div className="header-sub">
-                  <p className="box-title">Game Selected</p>
+                  <p className="box-title">{t('Selected')}</p>
                 </div>
                 <div className="space-box-title"></div>
                 <ul className="list-games-ul">{displaySelectedGames()}</ul>
@@ -316,7 +318,7 @@ const Library = () => {
           </div>
           <div className="buttonContent">
             <button className="btn" onClick={handleRunBooster}>
-              Run Booster
+              {t('Run')}
             </button>
           </div>
         </div>

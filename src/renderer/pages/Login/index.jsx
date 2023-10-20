@@ -1,6 +1,7 @@
 import { useState , useEffect} from 'react';
 const { ipcRenderer, shell } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../../styles/login.scss';
 
 function openLibraryWindow() {
@@ -50,6 +51,7 @@ function SteamGuard({ toogleSteamGuard }) {
   const [enteredCode, setEnteredCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleCodeChange = (event) => {
     const codeInUpperCase = event.target.value.toUpperCase();
@@ -90,7 +92,7 @@ function SteamGuard({ toogleSteamGuard }) {
               <div className="containerCircle">
                 <div className="loading" />
               </div>
-              <p className="titleLoad">Validating Steam Guard...</p>
+              <p className="titleLoad">{t('ValidatingSteam')}</p>
             </main>
           </div>
         </main>
@@ -100,7 +102,7 @@ function SteamGuard({ toogleSteamGuard }) {
           <div className='closeIco' onClick={toogleSteamGuard}></div>
           <div className="main">
             <div>
-              <p className="titleCode">Enter the Steam Guard code</p>
+              <p className="titleCode">{t('EnterSteamGuard')}</p>
               <div className="contentCode">
                 <input
                   className="inputCode"
@@ -113,7 +115,7 @@ function SteamGuard({ toogleSteamGuard }) {
               </div>
               <div className="btnContentCode">
                 <button className="btnCode" onClick={handleSubmit}>
-                  Enter
+                  {t('EnterBtn')}
                 </button>
               </div>
             </div>
@@ -124,11 +126,12 @@ function SteamGuard({ toogleSteamGuard }) {
   );
 }
 
-function LoginForm({openGithub }) {
+function LoginForm({openGithub}) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordLength, setPasswordLength] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
   const [showSteamGuard, setShowSteamGuard] = useState(false);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const toggleCheckbox = () => {
@@ -201,13 +204,13 @@ function LoginForm({openGithub }) {
           <div className="form-content">
             <div>
               <div className="form-x">
-                <p className="input-title">Username</p>
+                <p className="input-title">{t('Username')}</p>
                 <div className="inputContent">
                   <div className="icoUser"></div>
                   <input type="text" name="username" className="form-input" />
                 </div>
 
-                <p className="input-title">Password</p>
+                <p className="input-title">{t('Password')}</p>
                 <div className="inputContent">
                   <div className="icoPass"></div>
                   <input
@@ -229,7 +232,7 @@ function LoginForm({openGithub }) {
                 <div className={`checkbox-container ${isChecked ? 'checked' : ''}`} onClick={toggleCheckbox}>
                   <div className="checkbox-mark">✔</div>
                 </div>
-                <p className="titleRember">Remember me</p>
+                <p className="titleRember">{t('Remember')}</p>
               </div>
                     
             {showSteamGuard ? undefined
@@ -237,7 +240,7 @@ function LoginForm({openGithub }) {
               <div className="buttonContent">
                 <div className="btnS">
                   <button className="btnLogin" type="submit">
-                    <div className="icoLogin"></div> Login
+                    {t('Login')}
                   </button>
                 </div>
               </div>
@@ -246,7 +249,7 @@ function LoginForm({openGithub }) {
           </div>
         </form>
       </main>
-      {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard} />}
+      {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard}/>}
     </>
   );
 }
@@ -261,6 +264,7 @@ function Select({ openGithub, accountData  }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showAddContainer, setShowAddContainer] = useState(true);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -342,10 +346,10 @@ function Select({ openGithub, accountData  }) {
       <>
         <div className='contenOptions'>
           <div className='closeIcoOptions' onClick={() => toggleOptions(null)}></div>
-          <h1>Options</h1>
+          <h1>{t('Options')}</h1>
           <div className='deleteContainer' onClick={deleteAccount}>
             <div className='deleteIco'></div>
-            <p className='deleteTitle'>Delete User</p>
+            <p className='deleteTitle'>{t('DeleteUser')}</p>
           </div>
         </div>
         <div className='overlay'></div>
@@ -359,7 +363,7 @@ function Select({ openGithub, accountData  }) {
         <>
           <div className="Back" onClick={toggleAddUser}>
             <div className="backIco"/>
-            Back
+              {t('Back')}
           </div>
           <LoginForm />
         </>
@@ -369,7 +373,7 @@ function Select({ openGithub, accountData  }) {
             <div className="containerCircle">
               <div className="loading" />
             </div>
-            <p className="titleLoad">Connecting to steam...</p>
+            <p className="titleLoad">{t('Connecting')}</p>
           </main>
         </section>
       ) : (
@@ -398,7 +402,7 @@ function Select({ openGithub, accountData  }) {
                 <div className="addIco" />
               </div>
               <p className="addUser">
-                Add User
+                {t('AddUser')}
               </p>
             </main>
             )}

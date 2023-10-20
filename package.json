@@ -4,13 +4,15 @@
   "description": "",
   "scripts": {
     "watch": "node scripts/watch.js",
-	"build": "vite build"
+    "build": "vite build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "i18next": "^23.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^13.3.1",
     "react-router-dom": "6.9.0"
   },
   "devDependencies": {
