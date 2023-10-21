@@ -40,6 +40,12 @@ function createMainWindow() {
 app.whenReady().then(() => {
   createMainWindow();
 
+  const osLanguage = app.getLocale();
+
+  ipcMain.on('getOsLanguage', (event) => {
+    event.sender.send('osLanguage', osLanguage);
+  });
+  
   ipcMain.on('form-data', (event, data) => {
       handleFormData(data);
   });

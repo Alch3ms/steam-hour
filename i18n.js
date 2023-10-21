@@ -3,6 +3,8 @@ import { initReactI18next } from 'react-i18next';
 
 import En from './src/renderer/locales/en.json';
 import Es from './src/renderer/locales/es.json';
+import Ru from './src/renderer/locales/ru.json';
+import Ja from './src/renderer/locales/ja.json'
 
 i18n
   .use(initReactI18next)
@@ -13,9 +15,15 @@ i18n
       },
       es: {
         translation: Es,
-      }
+      },
+      ru: {
+        translation: Ru,
+      },
+      ja: {
+        translation: Ja,
+      },
     },
-    lng: 'es',
+    lng: 'en',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
