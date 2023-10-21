@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next';
 import '../../styles/library.scss';
 import '../../styles/steamLevels.scss'
 
+import Version from '../../components/version'
+import Github from '../../components/github'
+
 async function openData() {
   try {
     let data = await dataInfo();

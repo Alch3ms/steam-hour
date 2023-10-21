@@ -5,7 +5,6 @@ const { ipcRenderer } = window.require('electron');
 import i18n from '../../../i18n';
 
 import Menu from '../components/menu';
-import Version from '../components/version';
 import Login from './Login';
 import Library from './Library';
 import Boosting from './Boosting';
@@ -40,7 +39,6 @@ function routes() {
         <Route path="/library" element={<Library />} />
         <Route path="/boosting" element={<Boosting />} />
       </Routes>
-      <Version />
     </>
   );
 }

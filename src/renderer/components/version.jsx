@@ -1,9 +1,17 @@
 import packageJson from '../../../package.json'
+import styled from '@emotion/styled';
 
-function Version() {
+const Version = styled.p`
+    color: #8d8d8d;
+    position: absolute;
+    bottom:5px;
+    right:5px;
+`
+
+function version() {
     return(
-        <p style={{position: 'absolute', bottom: '2%', right: '1%', color: '#8d8d8da6'}}>v{packageJson.version}</p>
+        <Version>v{packageJson.version}</Version>
     )
 }
 
-export default Version;
+export default version;

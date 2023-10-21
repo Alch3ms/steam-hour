@@ -1,8 +1,11 @@
 import { useState , useEffect} from 'react';
-const { ipcRenderer, shell } = window.require('electron');
+const { ipcRenderer} = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../../styles/login.scss';
+import * as Theme from './LoginUI'
+
+import Version from  '../../components/version'
+import Github from '../../components/github';
 
 function openLibraryWindow() {
   return new Promise(async (resolve, reject) => {
@@ -85,20 +88,22 @@ function SteamGuard({ toogleSteamGuard }) {
   return (
     <>
     {isLoading ?
-      <section className="containerCode">
-        <main className="contentSS">
+      <Theme.Code>
+        <main className="contentCode">
           <div className="main">
             <main>
-              <div className="containerCircle">
-                <div className="loading" />
-              </div>
+              <Theme.LoadContent>
+                <Theme.Loading/>
+              </Theme.LoadContent>
               <p className="titleLoad">{t('ValidatingSteam')}</p>
             </main>
           </div>
         </main>
-      </section>:
-      <section className="containerCode">
-        <main className="contentSS">
+      </Theme.Code>
+      :
+      <>
+      <Theme.Code>
+        <main className="contentCode">
           <div className='closeIco' onClick={toogleSteamGuard}></div>
           <div className="main">
             <div>
@@ -121,12 +126,14 @@ function SteamGuard({ toogleSteamGuard }) {
             </div>
           </div>
         </main>
-      </section>}
+      </Theme.Code>
+      <Theme.Overlay/>
+      </>}
     </>
   );
 }
 
-function LoginForm({openGithub}) {
+function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordLength, setPasswordLength] = useState(0);
   const [isChecked, setIsChecked] = useState(false);
@@ -198,8 +205,7 @@ function LoginForm({openGithub}) {
 
   return (
     <>
-    <main className='container'>
-        <div className='github' onClick={openGithub}/>
+    <Theme.Container>
         <form onSubmit={handleSubmit}>
           <div className="form-content">
             <div>
@@ -248,13 +254,13 @@ function LoginForm({openGithub}) {
             </div>
           </div>
         </form>
-      </main>
+      </Theme.Container>
       {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard}/>}
     </>
   );
 }
 
-function Select({ openGithub, accountData  }) {
+function Select({ accountData  }) {
   const [accountsData, setAccountsData] = useState([]);
   const [selectedUsername, setSelectedUsername] = useState('');
   const [selectedPassword, setSelectedPassword] = useState('');
@@ -344,15 +350,15 @@ function Select({ openGithub, accountData  }) {
     
     return (
       <>
-        <div className='contenOptions'>
+        <Theme.ContentOptions>
           <div className='closeIcoOptions' onClick={() => toggleOptions(null)}></div>
           <h1>{t('Options')}</h1>
           <div className='deleteContainer' onClick={deleteAccount}>
             <div className='deleteIco'></div>
             <p className='deleteTitle'>{t('DeleteUser')}</p>
           </div>
-        </div>
-        <div className='overlay'></div>
+        </Theme.ContentOptions>
+        <Theme.Overlay/>
       </>
     );
   }
@@ -361,10 +367,10 @@ function Select({ openGithub, accountData  }) {
     <>
       {showLoginForm ? (
         <>
-          <div className="Back" onClick={toggleAddUser}>
+          <Theme.Back onClick={toggleAddUser}>
             <div className="backIco"/>
-              {t('Back')}
-          </div>
+            {t('Back')}
+          </Theme.Back>
           <LoginForm />
         </>
       ) : isLoading ? (
@@ -373,12 +379,11 @@ function Select({ openGithub, accountData  }) {
             <div className="containerCircle">
               <div className="loading" />
             </div>
-            <p className="titleLoad">{t('Connecting')}</p>
+            <p className="titleLoad">{t('Connecting') }</p>
           </main>
         </section>
       ) : (
-        <section className="sectionSelect">
-          <div className="github" onClick={openGithub} />
+        <Theme.ContainerSelect>
           {accountsData.map((account, index) => (
             <main key={index}>
               <div className="posterContainer">
@@ -407,7 +412,7 @@ function Select({ openGithub, accountData  }) {
             </main>
             )}
           {showSteamGuard && <SteamGuard toogleSteamGuard={toogleSteamGuard} />}
-        </section>
+        </Theme.ContainerSelect>
       )}
     </>
   );
@@ -416,15 +421,18 @@ function Select({ openGithub, accountData  }) {
 function Login() {
   const accountData = JSON.parse(localStorage.getItem('accounts')) || [];
 
-  function openGithub() {
-    const url = 'https://github.com/evairx/hours-booster';
-    shell.openExternal(url);
-  }
-
   return !accountData  || accountData .length === 0 ? (
-    <LoginForm openGithub={openGithub} />
+    <>
+      <LoginForm />
+      <Github/>
+      <Version/>
+    </>
   ) : (
-    <Select openGithub={openGithub} accountData={accountData}/>
+    <>
+      <Select accountData={accountData}/>
+      <Github/>
+      <Version/>
+    </>
   );
 }
 
