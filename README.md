@@ -1,7 +1,7 @@
 
  <p align="center">  <img src="https://i.ibb.co/MMS3Ymn/logo-Read-ME.jpg">  </p>
-
-![Downloads](https://img.shields.io/github/downloads/evairx/hours-booster/total.svg) ![Latest Version](https://img.shields.io/github/v/tag/evairx/hours-booster?label=Latest%20Version)
+ 
+ [![License](https://img.shields.io/github/license/evairx/hours-booster.svg?label=License&maxAge=86400)](./LICENSE) [![Downloads](https://img.shields.io/github/downloads/evairx/hours-booster/total.svg)](https://github.com/evairx/hours-booster/releases) [![GitHub Release](https://img.shields.io/github/release/evairx/hours-booster.svg?label=Latest&maxAge=60)](https://github.com/evairx/hours-booster/releases)
 
 
 # Preview
