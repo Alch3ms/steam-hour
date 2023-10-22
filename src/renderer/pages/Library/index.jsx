@@ -3,7 +3,7 @@ const { ipcRenderer } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as Theme from './LibraryUI'
-import '../../styles/steamLevels.scss'
+import '../../styles/steamLevels.css'
 
 async function openData() {
   try {
