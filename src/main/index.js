@@ -128,7 +128,7 @@ function handleFormData(data) {
         if (!infoSent && !levelSent && !gamesSent) {
           event.sender.send('dataInfo', 'userNotLoggedIn');
         } else {
-          event.sender.send('dataInfo', { info, infoLevel, games, data, vac: user.vac});
+          event.sender.send('dataInfo', { info, infoLevel, games, data});
         }
       });
       

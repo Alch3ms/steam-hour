@@ -2,11 +2,8 @@ import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../../styles/library.scss';
+import * as Theme from './LibraryUI'
 import '../../styles/steamLevels.scss'
-
-import Version from '../../components/version'
-import Github from '../../components/github'
 
 async function openData() {
   try {
@@ -118,32 +115,24 @@ const Library = () => {
     
       if (existingData) {
         const userData = JSON.parse(existingData);
-        const { info, games, infoLevel, data, vac } = userData;
-    
+        const { info, games, infoLevel, data} = userData;
+
         setAvatarUrl(info.avatar_url_full);
         setPlayerName(info.player_name);
-
-        if (games && games.app_count) {
-          setGameCount(games.app_count);
-        } else {
-          console.error("The object 'games' or its property 'app_count' are not defined.");
-        }
-
-        if (infoLevel && Object.keys(infoLevel).length > 0) {
-          const userLevelValue = Object.values(infoLevel)[0]
-          setPlayerLevel(userLevelValue);
-        }
-
-        if (vac && typeof vac.numBans !== 'undefined') {
-          if (vac.numBans) {
-            setVacBans(vac);
+        
+        setTimeout(() => {
+          if (games && games.app_count) {
+            setGameCount(games.app_count);
           } else {
-            console.error("The object 'vac' is defined, but 'numBans' is not equal to 0.");
+            console.error("The object 'games' or its property 'app_count' are not defined.");
           }
-        } else {
-          console.error("The object 'vac' is not defined or 'numBans' is not defined.");
-        }
-    
+
+          if (infoLevel && Object.keys(infoLevel).length > 0) {
+            const userLevelValue = Object.values(infoLevel)[0]
+            setPlayerLevel(userLevelValue);
+          }
+        }, 500);
+
         const sortedGames = games.apps.map((game) => ({ ...game, appid: game.appid })).sort((a, b) => a.name.localeCompare(b.name));
         setAvailableGames(sortedGames);
 
@@ -222,7 +211,7 @@ const Library = () => {
 
   const displaySelectedGames = () => {
     return selectedGames.map((game) => (
-      <li className="li-games" key={game.appid} onClick={() => moveGameToAvailable(game)}>
+      <Theme.GamesList key={game.appid} onClick={() => moveGameToAvailable(game)}>
         <img
           src={game.img_icon_url}
           className="poster"
@@ -234,14 +223,14 @@ const Library = () => {
           <p>{game.name}</p>
           <p className="hours">{(game.playtime_forever / 60).toFixed(1)} {t('Played')}</p>
         </div>
-      </li>
+      </Theme.GamesList>
     ));
   };
 
   const displayAvailableGames = () => {
     return filteredGames.map((game) => (
       <>
-      {game.img_icon_url && <li className="li-games" key={game.appid} onClick={() => moveGame(game)}>
+      {game.img_icon_url && <Theme.GamesList key={game.appid} onClick={() => moveGame(game)}>
         <img
           src={game.img_icon_url}
           className="poster"
@@ -253,7 +242,7 @@ const Library = () => {
           <p>{game.name}</p>
           <p className="hours">{(game.playtime_forever / 60).toFixed(1)} {t('Played')}</p>
         </div>
-      </li>}
+      </Theme.GamesList>}
       </>
     ));
   };
@@ -261,17 +250,17 @@ const Library = () => {
   return (
     <>
     {loading ?
-      <section className="contentLoad">
+      <Theme.ContainerLoad>
         <main>
-          <div className="containerCircle">
-            <div className="loading"/>
-          </div>
+          <Theme.ContentLoad>
+            <Theme.Loading/>
+          </Theme.ContentLoad>
           <p className="titleLoad">{t('LoadData')}</p>
         </main>
-      </section>
+      </Theme.ContainerLoad>
       :
-      <div>
-        <div className="header">
+      <Theme.Container>
+        <Theme.Header>
           {avatarUrl ? <img src={avatarUrl} className="avatar" alt="" />:<img src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" className="avatar" alt="" />}
           {playerName ? <div>
             <div className="playerName">
@@ -279,19 +268,15 @@ const Library = () => {
               <div className={className} style={style}>
                 <span className="level-number">{playerLevel}</span>
               </div>
-              {vacBans && <div className="vacBans">
-                <div className='vacIco'/>
-                <p className='vac'>{t('Vac')}</p>
-              </div>}
             </div>
             <p className="countGames">{gameCount} {t('GamesOwned')}</p>
           </div>:<div>Not Data found</div>}
-        </div>
-        <div className="container">
-          <div className="containerGames">
+        </Theme.Header>
+        <div>
+          <Theme.ContainerGames >
             <div>
-              <div className="game-box">
-                <div className="header-sub">
+              <Theme.Box>
+                <Theme.HeaderBox>
                   <p className="box-title">{t('Library')}</p>
                   <div className="right-content">
                     <div className="searchContent">
@@ -305,27 +290,28 @@ const Library = () => {
                       <div className="searchIco"></div>
                     </div>
                   </div>
-                </div>
-                <div className="space-box-title"></div>
+                </Theme.HeaderBox>
+                <Theme.Space/>
                 <ul className="list-games-ul">{displayAvailableGames()}</ul>
-              </div>
+              </Theme.Box>
 
-              <div className="game-box">
-                <div className="header-sub">
+              <Theme.Box>
+                <Theme.HeaderBox>
                   <p className="box-title">{t('Selected')}</p>
-                </div>
-                <div className="space-box-title"></div>
+                </Theme.HeaderBox>
+                <Theme.Space/>
                 <ul className="list-games-ul">{displaySelectedGames()}</ul>
-              </div>
+              </Theme.Box>
+
             </div>
-          </div>
-          <div className="buttonContent">
-            <button className="btn" onClick={handleRunBooster}>
+          </Theme.ContainerGames>
+          <Theme.ButtonContainer>
+            <Theme.Button onClick={handleRunBooster}>
               {t('Run')}
-            </button>
-          </div>
+            </Theme.Button>
+          </Theme.ButtonContainer>
         </div>
-      </div>}
+      </Theme.Container>}
     </>
   );
 };

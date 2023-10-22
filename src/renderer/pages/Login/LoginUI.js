@@ -91,6 +91,18 @@ export const Code = styled.section`
     }
 `
 
+export const ContainerLoad = styled.li`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .titleLoad {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+`
+
 export const LoadContent = styled.div`
     display: flex;
     justify-content: center;

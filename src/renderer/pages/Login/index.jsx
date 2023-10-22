@@ -374,14 +374,14 @@ function Select({ accountData  }) {
           <LoginForm />
         </>
       ) : isLoading ? (
-        <section className="contentLoad">
+        <Theme.ContainerLoad>
           <main>
-            <div className="containerCircle">
-              <div className="loading" />
-            </div>
+              <Theme.LoadContent>
+                <Theme.Loading/>
+              </Theme.LoadContent>
             <p className="titleLoad">{t('Connecting') }</p>
           </main>
-        </section>
+        </Theme.ContainerLoad>
       ) : (
         <Theme.ContainerSelect>
           {accountsData.map((account, index) => (
