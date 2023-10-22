@@ -8,7 +8,7 @@ i18n
     resources: {
       ...Global,
     },
-    lng: 'en',
+    lng: 'es',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,

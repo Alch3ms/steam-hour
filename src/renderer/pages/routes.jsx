@@ -11,7 +11,7 @@ import Boosting from './boosting';
 
 function routes() {
 
-  useEffect(() => {
+  /*useEffect(() => {
     ipcRenderer.send('getOsLanguage');
   
     ipcRenderer.on('osLanguage', (event, osLanguage) => {
@@ -29,7 +29,7 @@ function routes() {
   
       i18n.changeLanguage(newLanguage);
     });
-  }, []);
+  }, []);*/
 
   return (
     <>

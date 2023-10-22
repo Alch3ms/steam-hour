@@ -339,15 +339,16 @@ function Select({ accountData  }) {
 
     const deleteAccount = () => {
       const updatedAccounts = accountData.filter((storedAccount) => storedAccount.username !== account.username);
-
-      localStorage.setItem('accounts', JSON.stringify(updatedAccounts));
-
-      setShowAddContainer(updatedAccounts.length < 3);
+    
       setAccountsData(updatedAccounts);
+    
+      localStorage.setItem('accounts', JSON.stringify(updatedAccounts));
+    
+      setShowAddContainer(updatedAccounts.length < 3);
 
       toggleOptions(null);
     };
-    
+
     return (
       <>
         <Theme.ContentOptions>
