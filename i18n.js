@@ -1,27 +1,12 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
-import En from './src/renderer/locales/en.json';
-import Es from './src/renderer/locales/es.json';
-import Ru from './src/renderer/locales/ru.json';
-import Ja from './src/renderer/locales/ja.json'
+import Global from './src/renderer/locales/global.json';
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: {
-        translation: En,
-      },
-      es: {
-        translation: Es,
-      },
-      ru: {
-        translation: Ru,
-      },
-      ja: {
-        translation: Ja,
-      },
+      ...Global,
     },
     lng: 'en',
     fallbackLng: 'en',
