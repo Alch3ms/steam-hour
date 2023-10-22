@@ -7,7 +7,7 @@ import i18n from '../../../i18n';
 import Menu from '../components/menu';
 import Login from './Login';
 import Library from './Library';
-import Boosting from './Boosting';
+import Boosting from './boosting';
 
 function routes() {
 

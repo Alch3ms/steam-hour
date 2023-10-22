@@ -251,6 +251,12 @@ export const Container = styled.main`
         left: 0px;
     }
 
+    .buttonContent {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
     .btnLogin {
         width: 250px;
         margin-top: 1.200rem;

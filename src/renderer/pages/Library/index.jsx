@@ -2,8 +2,16 @@ import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import styled from '@emotion/styled';
 import * as Theme from './LibraryUI'
 import '../../styles/steamLevels.css'
+
+const Version = styled.p`
+  color: #8d8d8d;
+  position: absolute;
+  bottom:-40px;
+  right:5px;
+`
 
 async function openData() {
   try {
@@ -311,6 +319,7 @@ const Library = () => {
             </Theme.Button>
           </Theme.ButtonContainer>
         </div>
+        <Version>v0.4.5</Version>
       </Theme.Container>}
     </>
   );

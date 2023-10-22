@@ -51,6 +51,7 @@ export const Loading = styled.div`
 
 export const Container = styled.section`
     margin-top:1.5rem;
+    position:relative;
 `
 
 export const Header = styled.div`

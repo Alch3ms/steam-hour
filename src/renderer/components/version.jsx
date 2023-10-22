@@ -10,7 +10,7 @@ const Version = styled.p`
 
 function version() {
     return(
-        <Version>v{packageJson.version}</Version>
+        <Version>v0.4.5</Version>
     )
 }
 
