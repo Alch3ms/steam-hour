@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 const { ipcRenderer } = window.require('electron');
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../../styles/boosting.scss';
+import * as Theme from './BoostingUI'
 
 function Counter() {
     const [counterText, setCounterText] = useState("00d 00h 00m 00s");
@@ -68,22 +68,21 @@ function Counter() {
     }
 
     return (
-        <section className="content">
-            <main className="centered">
-                <h1 className="count">{counterText}</h1>
-                <div className="games">
-                    <p>{t('BoostingFor')}</p>
+        <Theme.Container>
+            <Theme.Center>
+                <Theme.CountText>{counterText}</Theme.CountText>
+                <Theme.Games>
+                    <Theme.Text>{t('BoostingFor')}</Theme.Text>
                     {displayedGames.map((game, index) => (
-                        <div className='gameS' key={index}>
-                            <img className='posterGame' src={game.img_icon_url} alt={`Icon for ${game.name}`} />
-                            <span className='nameGame'>{game.name}</span>
-                        </div>
+                        <Theme.GamesContent key={index}>
+                            <Theme.Poster src={game.img_icon_url} alt={`Icon for ${game.name}`} />
+                        </Theme.GamesContent>
                     ))}
-                    {extraGamesCount > 0 && <span>{t('And')} {extraGamesCount} {t('More')}</span>}
-                </div>
-                <button className='btn' onClick={stopBoost}>{t('Stop')}</button>
-            </main>
-        </section>
+                    {extraGamesCount > 0 && <Theme.Text>{t('And')} {extraGamesCount} {t('More')}</Theme.Text>}
+                </Theme.Games>
+                <Theme.Button onClick={stopBoost}>{t('Stop')}</Theme.Button>
+            </Theme.Center>
+        </Theme.Container>
     );
 }
 

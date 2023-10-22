@@ -1,47 +1,47 @@
-.content {
+import styled from '@emotion/styled';
+
+export const Container = styled.section`
     display: table;
     width: 100%;
     height: 100vh;
-}
+`
 
-.centered {
+export const Center = styled.main`
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-}
+`
 
-.count {
+export const CountText = styled.h1`
     font-size: 2rem;
     font-weight: 550;
-}
+`
 
-.games {
+export const Games = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     gap:.400rem;
     margin-top: .600rem;
-}
+`
 
-.gameS {
+export const GamesContent = styled.div`
     position: relative;
-}
+`
 
-.posterGame {
-    &:hover > .nameGame {
-        display: block;
-    }
-}
+export const Poster = styled.img`
+    width:28px;
+    height:28px;
+    border-radius:8px;
+`
 
-.nameGame {
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    display: none;
-}
+export const Text = styled.p`
+    font-size: .800rem;
+    font-weight: 400;
+    color: #dddddd;
+`
 
-.btn {
+export const Button = styled.button`
     width: 190px;
     margin-top: 1.200rem;
     height: 40px;
@@ -55,8 +55,8 @@
     border: 1px solid #757575;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
 
-.btn:hover {
-    background-color: rgba(255, 255, 255, 0.37); /* Cambiamos el color de fondo al presionar el botón */
-}
+    &:hover  {
+        background-color: rgba(255, 255, 255, 0.37);
+    }
+`
