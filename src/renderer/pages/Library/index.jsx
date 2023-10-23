@@ -6,10 +6,40 @@ import styled from '@emotion/styled';
 import * as Theme from './LibraryUI'
 import '../../styles/steamLevels.css'
 
+import Spponsorr from '../../components/Sponsor';
+
+function Sponsor() {
+  const Image = styled.img`
+    position:absolute;
+    bottom:-30px;
+    left:20px;
+    width:180px;
+    height:30px;
+    opacity:.7;
+    transition: all .3s ease-out;
+    cursor:pointer;
+
+    &:hover {
+        opacity:1;
+    }
+  `
+
+  function openSponsor() {
+      const url = 'https://ko-fi.com/evairx';
+      shell.openExternal(url);
+  }
+  
+  return (
+      <>
+          <Image src="/kofi.webp" onClick={openSponsor}/>
+      </>
+  )
+}
+
 const Version = styled.p`
   color: #8d8d8d;
   position: absolute;
-  bottom:-40px;
+  bottom:-38px;
   right:5px;
 `
 
@@ -265,6 +295,7 @@ const Library = () => {
           </Theme.ContentLoad>
           <p className="titleLoad">{t('LoadData')}</p>
         </main>
+        <Spponsorr/>
       </Theme.ContainerLoad>
       :
       <Theme.Container>
@@ -320,6 +351,7 @@ const Library = () => {
           </Theme.ButtonContainer>
         </div>
         <Version>v0.4.5</Version>
+        <Sponsor/>
       </Theme.Container>}
     </>
   );

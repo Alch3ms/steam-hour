@@ -6,6 +6,7 @@ import * as Theme from './LoginUI'
 
 import Version from  '../../components/version'
 import Github from '../../components/github';
+import Sponsor from '../../components/sponsor'
 
 function openLibraryWindow() {
   return new Promise(async (resolve, reject) => {
@@ -433,6 +434,7 @@ function Login() {
       <Select accountData={accountData}/>
       <Github/>
       <Version/>
+      <Sponsor/>
     </>
   );
 }
