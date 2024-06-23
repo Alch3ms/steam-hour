@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, ipcRenderer } = require('electron');
 const steamUser = require('steam-user');
 const packageJson = require('../../package.json');
 const config = require('../../config')
@@ -16,7 +16,6 @@ function createMainWindow() {
       height: 720,
       resizable: false,
       fullscreenable: false,
-      frame: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
@@ -46,7 +45,6 @@ app.whenReady().then(() => {
   
   ipcMain.on('form-data', (event, data) => {
       handleFormData(data);
-      event.sender.send('get-data', true);
   });
   
   app.on('window-all-closed', () => {
@@ -165,7 +163,7 @@ function handleFormData(data) {
       ipcMain.on('start-boost', (event, selectedGameIds) => {
         console.log(selectedGameIds);
 
-        user.setPersona(1);
+        user.setPersona(0);
 
         user.gamesPlayed(selectedGameIds, () => {
           event.sender.send('boost-started');
@@ -187,16 +185,15 @@ function handleFormData(data) {
 function handleSteamError(err) {
   const errorMessages = {
     'InvalidPassword': {
-      title: 'Invalid Password',
-      message: 'Your Steam password is incorrect, please try again.',
+      title: 'passError',
     },
     'RateLimitExceeded': {
-      title: 'Rate Limit Exceeded',
-      message: "Hey hey, calm down speedy, are you in a hurry? don't you see that because of you Steam has blocked your IP for a while? just go take a break and come back later.",
+      title: 'rateLimit',
     },
   };
 
   const { title, message } = errorMessages[err.message] || errorMessages['InvalidPassword'];
-
-  dialog.showErrorBox(title, message);
+  if (mainWindow) {
+    mainWindow.webContents.send('error-occurred',title);
+  }
 }

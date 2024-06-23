@@ -1,5 +1,6 @@
 {
     "en": {
+      "name": "English",
       "translation": {
         "ValidatingSteam": "Validating Steam Guard...",
         "EnterSteamGuard": "Steam Guard",
@@ -8,6 +9,8 @@
         "Password": "Password",
         "Remember": "Remember Me",
         "Login": "Login",
+        "passError": "Check your password and account name and try again.",
+        "rateLimit": "There have been to many login failures from  your network in short time period, Please wait try again later",
         "Options": "Options",
         "DeleteUser": "Delete User",
         "Back": "Back",
@@ -25,10 +28,16 @@
         "BoostingFor": "It is being boosted for",
         "And": "and",
         "More": "games more",
-        "Stop": "Stop Boosting"
+        "Stop": "Stop Boosting",
+        "Settings": "Settings",
+        "Lang": "Interface Language",
+        "Status": "Status",
+        "Visible": "Visible",
+        "Invisible": "Invisible"
       }
     },
     "es": {
+      "name": "Español",
       "translation": {
         "ValidatingSteam": "Validando Steam Guard...",
         "EnterSteamGuard": "Introduzca el código de Steam Guard",
@@ -37,6 +46,8 @@
         "Password": "Contraseña",
         "Remember": "Recuérdame",
         "Login": "Iniciar sesión",
+        "passError": "Comprueba tu contraseña y nombre de cuenta e inténtalo de nuevo.",
+        "rateLimit": "Se han producido demasiados fallos de inicio de sesión en su red en un corto período de tiempo. Por favor espere e inténtelo más tarde",
         "Options": "Opciones",
         "DeleteUser": "Eliminar usuario",
         "Back": "Volver",
@@ -54,10 +65,16 @@
         "BoostingFor": "Se está boosteando para",
         "And": "y",
         "More": "más juegos",
-        "Stop": "Dejar de boostear"
+        "Stop": "Dejar de boostear",
+        "Settings": "Ajustes",
+        "Lang": "Idioma de la interfaz",
+        "Status": "Estado",
+        "Visible": "Visible",
+        "Invisible": "Invisible"
       }
     },
     "ru": {
+      "name": "Русский",
       "translation": {
         "ValidatingSteam": "Проверка паровой защиты...",
         "EnterSteamGuard": "Введите код Steam Guard",
@@ -66,6 +83,8 @@
         "Password": "Пароль",
         "Remember": "Запомните меня.",
         "Login": "Войти в систему",
+        "passError": "Проверьте пароль и имя учетной записи и повторите попытку.",
+        "rateLimit": "За короткий промежуток времени произошло слишком много сбоев при входе в систему из вашей сети, пожалуйста, подождите, повторите попытку позже",
         "Options": "Опции",
         "DeleteUser": "Удалить пользователя",
         "Back": "Назад к",
@@ -83,10 +102,16 @@
         "BoostingFor": "Она увеличивается для",
         "And": "и",
         "More": "игры больше",
-        "Stop": "прекратить форсирование"
+        "Stop": "прекратить форсирование",
+        "Settings": "Настройки",
+        "Lang": "Язык интерфейса",
+        "Status": "Статус",
+        "Visible": "Видимый",
+        "Invisible": "Невидимый"
       }
     },
     "ja": {
+      "name": "日本語",
       "translation": {
         "ValidatingSteam": "スチームガードの検証...",
         "EnterSteamGuard": "スチームガードコードを入力",
@@ -95,6 +120,8 @@
         "Password": "パスワード",
         "Remember": "リメンバー・ミー",
         "Login": "ログイン",
+        "passError": "パスワードとアカウント名を確認して、もう一度お試しください。",
+        "rateLimit": "ネットワークからのログインに失敗しました。しばらくお待ちください。",
         "Options": "オプション",
         "DeleteUser": "ユーザー削除",
         "Back": "バック",
@@ -112,7 +139,12 @@
         "BoostingFor": "のために増強されている。",
         "And": "そして",
         "More": "より多くのゲーム",
-        "Stop": "ブーストを止める"
+        "Stop": "ブーストを止める",
+        "Settings": "設定",
+        "Lang": "インターフェース言語",
+        "Status": "ステータス",
+        "Visible": "可視",
+        "Invisible": "見えない"
       }
     }
   }

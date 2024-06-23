@@ -27,7 +27,7 @@
     "i18next": "23.6.0",
     "react-i18next": "13.3.1",
     "path": "0.12.7",
-    "steam-user": "5.0.1",
+    "steam-user": "5.0.10",
     "vite": "4.4.5"
   }
 }

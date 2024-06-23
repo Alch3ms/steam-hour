@@ -122,6 +122,24 @@ export const Input = styled.input`
     }
 `
 
+export const InputError = styled.input`
+    background-color: #1C243A;
+    border-left: 2px solid rgb(255, 53, 53);
+    border-top: none;
+    border-right: 2px solid rgb(255, 53, 53);
+    border-bottom: none;
+    border-radius: 7px;
+    width: 100%;
+    height: 39px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 1rem;
+
+    &:focus {
+        outline: none;
+    }
+`
+
 export const Submit = styled.button`
     width: 100%;
     margin-top: 1.4rem;
@@ -138,6 +156,13 @@ export const Submit = styled.button`
     &:hover {
         background: linear-gradient(to right, #6ddaff, #518bff);
     }
+`
+
+export const Error = styled.p`
+    margin-top: 1rem;
+    color: rgb(255, 53, 53);
+    font-size: 1rem;
+    font-weight: 600;
 `
 
 export const  SubmitDisabled = styled.button`
@@ -200,5 +225,75 @@ export const SettingsBtn = styled.button`
 
     &:hover {
         opacity: 1;
+    }
+`
+
+export const Settings = styled.div`
+    background-color: #38415186;
+    position: absolute;
+    bottom: 95px;
+    right: 35px;
+    min-width: 250px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    padding: 1rem 0.5rem;
+`
+
+export const SettignTitle = styled.p`
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+`
+
+export const SettingsContent = styled.div`
+    margin-top: 1rem;
+`
+
+export const Beta = styled.span`
+    background: linear-gradient(to right, #06BFFF, #2D74FF);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+`
+
+export const Visible = styled.div`
+    background: #4c6b22;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+`
+
+export const Invisible = styled.div`
+    background: #7d7d7d;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+`
+
+export const Btn = styled.button`
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    gap: 1rem;
+
+    &:hover {
+        background-color: #384151;
     }
 `
