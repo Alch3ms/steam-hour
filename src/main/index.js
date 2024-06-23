@@ -12,19 +12,17 @@ const url = config.VITE_DEV_SERVER_UR
 function createMainWindow() {
 
     mainWindow =  new BrowserWindow({
-      width: 790,
-      height: 550,
+      width: 1280,
+      height: 720,
       resizable: false,
       fullscreenable: false,
-      frame:false,
+      frame: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
       },
       title: 'Hours Booster',
     });
-
-    newUpdate()
 
     mainWindow.loadURL(url)
 
@@ -48,6 +46,7 @@ app.whenReady().then(() => {
   
   ipcMain.on('form-data', (event, data) => {
       handleFormData(data);
+      event.sender.send('get-data', true);
   });
   
   app.on('window-all-closed', () => {
@@ -200,37 +199,4 @@ function handleSteamError(err) {
   const { title, message } = errorMessages[err.message] || errorMessages['InvalidPassword'];
 
   dialog.showErrorBox(title, message);
-}
-
-
-function newUpdate() {
-  const versionUrl = 'https://raw.githubusercontent.com/evairx/hours-booster/main/version.json';
-
-  fetch(versionUrl)
-    .then((response) => response.json())
-    .then((remoteVersion) => {
-      if (remoteVersion.version !== packageJson.version) {
-        dialog
-          .showMessageBox(mainWindow, {
-            type: 'info',
-            title: 'Update Available',
-            message: 'There is a new version available, do you want to upgrade?',
-            buttons: ['Update Now', 'Exit'],
-          })
-          .then((response) => {
-            if (response.response === 0) {
-              shell.openExternal('https://github.com/evairx/hours-booster/releases');
-              app.quit();
-            } else {
-              app.quit();
-            }
-          })
-          .catch((error) => {
-            console.error('Error displaying update dialog:', error);
-          });
-      }
-    })
-    .catch((error) => {
-      console.error('Error verifying remote version:', error);
-    });
 }
